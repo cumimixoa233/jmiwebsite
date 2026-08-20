@@ -55,9 +55,10 @@ try:
         ADMIN_USERNAME = str(st.secrets["admin"].get("username", "")).strip()
         ADMIN_PASSWORD = str(st.secrets["admin"].get("password", ""))
 
-except Exception:
+except Exception as e:
     supabase = None
     cloud_mode = False
+    st.error(f"LỖI KẾT NỐI SUPABASE: {e}")
 
 
 # -----------------------------

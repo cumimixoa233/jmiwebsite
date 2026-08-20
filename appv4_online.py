@@ -8,6 +8,24 @@ from datetime import datetime
 
 import streamlit as st
 
+# CSS ẩn toàn bộ Header, Footer, Toolbar và các Icon góc dưới màn hình
+hide_streamlit_style = """
+    <style>
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+    .stAppToolbar {display: none !important;}
+    [data-testid="stStatusWidget"] {display: none !important;}
+    
+    /* Ẩn icon vương miện & avatar ở góc dưới bên phải */
+    [data-testid="manage-app-button"] {display: none !important;}
+    .viewerBadge_container__1A12q, .viewerBadge_link__1S137, [class^="viewerBadge"] {display: none !important;}
+    iframe[title="streamlit_badge"] {display: none !important;}
+    div[class*="stAppDeployButton"] {display: none !important;}
+    </style>
+"""
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
 # ============================================================
 # JMI VIET NAM - STREAMLIT ONLINE VERSION
 # Storage:
@@ -19,18 +37,7 @@ import streamlit as st
 # on Streamlit Community Cloud is NOT permanent.
 # ============================================================
 
-# Thêm CSS ẩn toolbar, footer và các icon bên dưới góc phải
-hide_streamlit_style = """
-    <style>
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    header {visibility: hidden;}
-    .stAppToolbar {display: none;}
-    [data-testid="stStatusWidget"] {display: none;}
-    .viewerBadge_container__1A12q, .viewerBadge_link__1S137, [class^="viewerBadge"] {display: none !important;}
-    </style>
-"""
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
 
 st.set_page_config(
     page_title="Công ty TNHH JMI Việt Nam 2026",

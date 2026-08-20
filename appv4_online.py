@@ -3,6 +3,7 @@ import hashlib
 import hmac
 import io
 import os
+import supabase
 from datetime import datetime
 
 import streamlit as st

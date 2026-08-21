@@ -8,8 +8,10 @@ from datetime import datetime
 
 import streamlit as st
 
-# CSS ẩn toàn bộ Header, Footer, Toolbar và các Icon góc dưới màn hình
-hide_streamlit_style = """
+import streamlit as st
+
+# CSS & JavaScript ẩn hoàn toàn floating toolbar góc dưới bên phải
+hide_streamlit_toolbar = """
     <style>
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
@@ -17,14 +19,28 @@ hide_streamlit_style = """
     .stAppToolbar {display: none !important;}
     [data-testid="stStatusWidget"] {display: none !important;}
     
-    /* Ẩn icon vương miện & avatar ở góc dưới bên phải */
-    [data-testid="manage-app-button"] {display: none !important;}
-    .viewerBadge_container__1A12q, .viewerBadge_link__1S137, [class^="viewerBadge"] {display: none !important;}
-    iframe[title="streamlit_badge"] {display: none !important;}
-    div[class*="stAppDeployButton"] {display: none !important;}
+    /* Target các thẻ bọc icon góc dưới */
+    div[class*="viewerBadge"], 
+    div[class*="styles_viewerBadge"],
+    div[class*="stAppDeployButton"],
+    iframe[title="streamlit_badge"],
+    [data-testid="manage-app-button"] {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+    }
     </style>
+
+    <script>
+    // JS tự động tìm và xóa element ngay khi load trang
+    const removeBadges = () => {
+        const badges = document.querySelectorAll('div[class*="viewerBadge"], [data-testid="manage-app-button"], iframe[title="streamlit_badge"]');
+        badges.forEach(el => el.remove());
+    };
+    setInterval(removeBadges, 500);
+    </script>
 """
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+st.markdown(hide_streamlit_toolbar, unsafe_allow_html=True)
 
 # ============================================================
 # JMI VIET NAM - STREAMLIT ONLINE VERSION
